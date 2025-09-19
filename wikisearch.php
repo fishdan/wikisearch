@@ -10,7 +10,9 @@ Update URI: https://github.com/fishdan/wikisearch
 */
 
 require __DIR__ . '/plugin-update-checker-5.6/plugin-update-checker.php';
-$wks_puc = Puc_v4_Factory::buildUpdateChecker(
+use YahnisElsts\PluginUpdateChecker\v5\PucFactory;
+
+$wks_puc = PucFactory::buildUpdateChecker(
     'https://github.com/fishdan/wikisearch',
     __FILE__,
     'wikisearch'
