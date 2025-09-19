@@ -3,7 +3,7 @@
 Plugin Name: WikiSearch
 Plugin URI: https://fishdan.com/wikisearch
 Description: Transforms specified hyperlinks into interactive elements for Wikipedia searches.
-Version: 0.1.3
+Version: 0.1.4
 Author: Dan Fishman
 Author URI: https://fishdan.com
 License: MIT
