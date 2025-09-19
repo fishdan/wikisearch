@@ -6,23 +6,25 @@ Description: Transforms specified hyperlinks into interactive elements for Wikip
 Version: 0.1.3
 Author: Dan Fishman
 Author URI: https://fishdan.com
-Update URI: https://github.com/fishdan/wikisearch
+License: MIT
+License URI: https://opensource.org/licenses/MIT
+Text Domain: wikisearch
+Requires PHP: 7.4
+Requires at least: 5.8
 */
 
-require __DIR__ . '/plugin-update-checker-5.6/plugin-update-checker.php';
-use YahnisElsts\PluginUpdateChecker\v5\PucFactory;
+if (!defined('ABSPATH')) {
+    exit;
+}
 
-$wks_puc = PucFactory::buildUpdateChecker(
-    'https://github.com/fishdan/wikisearch',
-    __FILE__,
-    'wikisearch'
-);
-$wks_puc->getVcsApi()->enableReleaseAssets();
+if (!defined('WIKISEARCH_VERSION')) {
+    define('WIKISEARCH_VERSION', '0.1.3');
+}
 
 // Enqueue the JavaScript and CSS files
 function wikisearch_enqueue_scripts() {
-    wp_enqueue_script('wikisearch-js', plugin_dir_url(__FILE__) . 'wikisearch.js', array(), '1.0', true);
-    wp_enqueue_style('wikisearch-css', plugin_dir_url(__FILE__) . 'wikisearch.css');
+    wp_enqueue_script('wikisearch-js', plugin_dir_url(__FILE__) . 'wikisearch.js', array(), WIKISEARCH_VERSION, true);
+    wp_enqueue_style('wikisearch-css', plugin_dir_url(__FILE__) . 'wikisearch.css', array(), WIKISEARCH_VERSION);
 }
 
 add_action('wp_enqueue_scripts', 'wikisearch_enqueue_scripts');
