@@ -6,13 +6,10 @@ Description: Transforms specified hyperlinks into interactive elements for Wikip
 Version: 0.1.1
 Author: Dan Fishman
 Author URI: https://fishdan.com
+Update URI: https://github.com/fishdan/wikisearch
 */
 
-/* Optional but recommended so WP knows updates come from GitHub */
-/* Update URI: https://github.com/fishdan/wikisearch */
-
-
-require __DIR__ . '/plugin-update-checker/plugin-update-checker.php';
+require __DIR__ . '/plugin-update-checker-5.6/plugin-update-checker.php';
 $wks_puc = Puc_v4_Factory::buildUpdateChecker(
     'https://github.com/fishdan/wikisearch',
     __FILE__,

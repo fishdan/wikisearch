@@ -30,6 +30,19 @@ jobs:
           test -f wikisearch.php
           grep -q "Plugin Name:.*WikiSearch" wikisearch.php
 
+      - name: Ensure version matches tag
+        run: |
+          FILE_VERSION=$(grep -E "^\s*Version:\s*" wikisearch.php | head -1 | sed -E 's/^.*Version:\s*([0-9A-Za-z\.-]+).*/\1/')
+          if [ -z "$FILE_VERSION" ]; then
+            echo "::error ::Version header missing in wikisearch.php"
+            exit 1
+          fi
+          EXPECTED="${TAG#v}"
+          if [ "$FILE_VERSION" != "$EXPECTED" ]; then
+            echo "::error ::Version in wikisearch.php ($FILE_VERSION) does not match tag ($TAG)"
+            exit 1
+          fi
+
       # Build a ZIP with FORWARD SLASHES using git archive.
       # This packages the WHOLE repo with a top-level 'wikisearch/' folder.
       # Ensure your plugin files live at repo root alongside wikisearch.php.
