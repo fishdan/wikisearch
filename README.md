@@ -1,9 +1,9 @@
 # WikiSearch Plugin
 
-[![Version](https://img.shields.io/badge/version-0.1-blue.svg)](#)
+[![Version](https://img.shields.io/github/v/release/fishdan/wikisearch?label=Version&display_name=tag&sort=semver)](https://github.com/fishdan/wikisearch/releases/latest)
 [![License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
 [![WordPress](https://img.shields.io/badge/WordPress-%5E6.0-blue)](https://wordpress.org/)
-[![Download](https://img.shields.io/github/v/release/fishdan/Utilities?display_name=tag\&sort=semver)](https://github.com/fishdan/Utilities/blob/main/plugins/dist/wikisearch.zip)
+[![Download](https://img.shields.io/github/v/release/fishdan/wikisearch?display_name=tag&sort=semver)](https://github.com/fishdan/wikisearch/releases/latest/download/wikisearch.zip)
 
 <!-- ↑ Update the repo owner/name in the Download badge if this lives in a different repo. -->
 

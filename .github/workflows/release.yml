@@ -50,6 +50,9 @@ jobs:
         run: |
           git archive --format=zip --output "$ZIP_NAME" --prefix=wikisearch/ "$GITHUB_SHA"
 
+      - name: Copy stable zip alias
+        run: cp "$ZIP_NAME" wikisearch.zip
+
       # If your plugin lives in a subfolder of a monorepo, use this instead:
       # - name: Build plugin ZIP from subfolder
       #   run: |
@@ -60,5 +63,7 @@ jobs:
         uses: softprops/action-gh-release@v2
         with:
           tag_name: ${{ env.TAG }}
-          files: ${{ env.ZIP_NAME }}
+          files: |
+            ${{ env.ZIP_NAME }}
+            wikisearch.zip
           generate_release_notes: true
