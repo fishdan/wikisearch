@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const placeholderPattern = /^wikisearch(?::(.*))?$/i;
+    const placeholderPattern = /^wikisearch(?:[:/](.*))?$/i;
     const anchors = document.querySelectorAll('a[href]');
 
     anchors.forEach((anchor) => {
@@ -13,7 +13,8 @@ document.addEventListener('DOMContentLoaded', () => {
             return;
         }
 
-        const match = rawHref.trim().match(placeholderPattern);
+        const normalizedHref = rawHref.trim().replace(/^(?:https?:)?\/\//i, '');
+        const match = normalizedHref.match(placeholderPattern);
 
         if (!match) {
             return;

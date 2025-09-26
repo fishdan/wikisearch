@@ -101,7 +101,9 @@ if (!function_exists('wikisearch_filter_content')) {
                     continue;
                 }
 
-                if (!preg_match('/^wikisearch(?::(.*))?$/i', trim($href), $matches)) {
+                $normalizedHref = preg_replace('#^(?:https?:)?//#i', '', trim($href));
+
+                if (!preg_match('/^wikisearch(?:[:\/](.*))?$/i', $normalizedHref, $matches)) {
                     continue;
                 }
 
