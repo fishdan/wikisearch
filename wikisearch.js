@@ -1,31 +1,59 @@
-document.addEventListener('DOMContentLoaded', function() {
-    // Finds all <a> tags containing 'wikisearch'
-    const links = document.querySelectorAll('a[href*="wikisearch"]');
-    let counter = 1; // Initialize counter for ID increment
+document.addEventListener('DOMContentLoaded', () => {
+    const placeholderPattern = /^wikisearch(?::(.*))?$/i;
+    const anchors = document.querySelectorAll('a[href]');
 
-    links.forEach(link => {
-        if (link.href.includes('github')) {
-            // Skip to the next iteration of the loop
-        }
-        else{
-            // Constructs the Wikipedia search URL using the inner text of the link
-            var searchText = link.innerText;
-            var wikiUrl = 'https://en.wikipedia.org/wiki/' + encodeURIComponent(searchText);
-
-            // Creates a new span element
-            const span = document.createElement('span');
-            span.className = 'wiki-search'; // Adds the 'wiki-search' class to the span
-            span.id = 'wikisearch' + counter++; // Assigns incremented ID to each span
-            span.textContent = link.textContent; // Sets the span's text content to match that of the link
-
-            // Adds an event listener to redirect to the Wikipedia URL when the span is clicked
-            span.addEventListener('click', function() {
-                window.location.href = wikiUrl;
-            });
-
-            // Replaces the <a> tag with the new span in the DOM
-            link.parentNode.replaceChild(span, link);
+    anchors.forEach((anchor) => {
+        if (anchor.dataset.wikisearchProcessed === '1') {
+            return;
         }
 
+        const rawHref = anchor.getAttribute('href');
+
+        if (!rawHref) {
+            return;
+        }
+
+        const match = rawHref.trim().match(placeholderPattern);
+
+        if (!match) {
+            return;
+        }
+
+        const fallbackText = anchor.textContent.trim();
+        let slugCandidate = match[1] ? match[1].trim() : fallbackText;
+
+        try {
+            slugCandidate = decodeURIComponent(slugCandidate);
+        } catch (error) {
+            // Leave slugCandidate as-is when decoding fails.
+        }
+
+        if (!slugCandidate) {
+            return;
+        }
+
+        const sanitizedSlug = slugCandidate.replace(/\s+/g, ' ').trim().replace(/\s/g, '_');
+        const encodedSlug = encodeURIComponent(sanitizedSlug)
+            .replace(/%2F/gi, '/')
+            .replace(/%3A/gi, ':');
+        const wikiUrl = `https://en.wikipedia.org/wiki/${encodedSlug}`;
+
+        anchor.href = wikiUrl;
+        anchor.classList.add('wiki-search');
+        anchor.dataset.wikisearchProcessed = '1';
+
+        if (anchor.target === '_blank') {
+            const relParts = anchor.rel ? anchor.rel.split(/\s+/) : [];
+
+            if (!relParts.includes('noopener')) {
+                relParts.push('noopener');
+            }
+
+            if (!relParts.includes('noreferrer')) {
+                relParts.push('noreferrer');
+            }
+
+            anchor.rel = relParts.join(' ').trim();
+        }
     });
 });

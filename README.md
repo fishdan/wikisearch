@@ -2,7 +2,7 @@
 
 [![Version](https://img.shields.io/github/v/release/fishdan/wikisearch?label=Version&display_name=tag&sort=semver)](https://github.com/fishdan/wikisearch/releases/latest)
 [![License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
-[![WordPress](https://img.shields.io/badge/WordPress-%5E6.0-blue)](https://wordpress.org/)
+[![WordPress](https://img.shields.io/badge/WordPress-%5E6.5-blue)](https://wordpress.org/)
 [![Download](https://img.shields.io/github/v/release/fishdan/wikisearch?display_name=tag&sort=semver)](https://github.com/fishdan/wikisearch/releases/latest/download/wikisearch.zip)
 
 <!-- ↑ Update the repo owner/name in the Download badge if this lives in a different repo. -->
@@ -14,10 +14,10 @@ One‑step Wikipedia linking for WordPress: highlight text, set the link URL to 
 ## ✨ Features
 
 * **Gutenberg-friendly**: link any text with the URL `wikisearch` and it becomes a Wikipedia link based on the visible text
-* **Zero config**: no settings required
+* **Accessible anchors**: links remain real `<a>` elements for keyboard, screen reader, and no-JS visitors
+* **Zero config**: no settings required, with optional slug overrides like `wikisearch:Albert_Einstein`
 * **Lightweight**: tiny JS + CSS, no external calls until a user clicks
 * **Theme‑friendly styles** via `.wiki-search`
-* Skips links that contain `github` in their `href`
 
 ---
 
@@ -75,7 +75,6 @@ https://en.wikipedia.org/wiki/Marie_Curie
 
 ## 🛣️ Roadmap / Planned improvements
 
-* Keep **anchor semantics** (convert placeholders to real `<a href>` instead of replacing with `<span>`) for better accessibility and no‑JS fallback
 * **Safer selector** (opt‑in via class `a.wikisearch` or attribute `[data-wikisearch]`)
 * **Admin setting** for Wikipedia language and target behavior
 * **Shortcode + Gutenberg block** for explicit inserts
@@ -85,18 +84,19 @@ https://en.wikipedia.org/wiki/Marie_Curie
 
 ## ❓ FAQ
 
-**Why isn’t my GitHub link changing?**
+**Does this work without JavaScript?**
 
-Links whose `href` contains `github` are intentionally skipped so developer docs aren’t altered.
+Yes. The plugin now converts placeholder links on the server so the front-end HTML already points to Wikipedia—even if scripts are disabled.
 
-**Can I force a different article slug than the visible text?**
+**How do I force a different article slug than the visible text?**
 
-For now the plugin uses the visible text. A shortcode and/or attribute‑based selector is planned for custom slugs.
+Set the URL to something like `wikisearch:Albert_Einstein` (or any custom slug) and the plugin will use that instead of the on-page text.
 
 ---
 
 ## 🧾 Changelog
 
+* **1.0.0** – Server-side placeholder conversion, improved accessibility, optional custom slugs, and refreshed assets for WordPress.org submission.
 * **0.1.4** – Prepared the plugin for the WordPress.org directory and removed the custom update checker.
 * **0.1.0** – Initial release.
 
