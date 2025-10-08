@@ -4,7 +4,7 @@ Tags: wikipedia, links, search, wiki
 Requires at least: 5.8
 Tested up to: 6.4
 Requires PHP: 7.4
-Stable tag: 0.1.4
+Stable tag: 0.1.5
 License: MIT
 License URI: https://opensource.org/licenses/MIT
 
@@ -37,6 +37,9 @@ Not yet. The plugin currently matches the Wikipedia article based on the visible
 
 == Changelog ==
 
+= 0.1.5 =
+* Renamed the plugin to LinkMaker and refreshed distribution metadata.
+
 = 0.1.4 =
 * Refined asset loading and WordPress.org preparation.
 
@@ -45,5 +48,5 @@ Not yet. The plugin currently matches the Wikipedia article based on the visible
 
 == Upgrade Notice ==
 
-= 0.1.4 =
-Prepare for the WordPress.org listing and ensure compatibility with recent WordPress versions.
+= 0.1.5 =
+Renaming to LinkMaker ensures compliant naming and updated packaging workflow.

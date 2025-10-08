@@ -97,6 +97,7 @@ For now the plugin uses the visible text. A shortcode and/or attribute‑based s
 
 ## 🧾 Changelog
 
+* **0.1.5** – Renamed the plugin to LinkMaker and updated release automation.
 * **0.1.4** – Prepared the plugin for the WordPress.org directory and removed the custom update checker.
 * **0.1.0** – Initial release.
 
