@@ -1,4 +1,4 @@
-=== WikiSearch ===
+=== LinkMaker ===
 Contributors: fishdan
 Tags: wikipedia, links, search, wiki
 Requires at least: 5.8
@@ -8,11 +8,11 @@ Stable tag: 0.1.4
 License: MIT
 License URI: https://opensource.org/licenses/MIT
 
-WikiSearch turns links pointing to `wikisearch` into live Wikipedia searches using the link text.
+LinkMaker turns links pointing to `linkmaker` into live Wikipedia searches using the link text.
 
 == Description ==
 
-WikiSearch lets editors create Wikipedia links without leaving the editor. Link any text to `wikisearch` (no protocol) and the plugin automatically points the front-end link to the matching article on Wikipedia. It ships with lightweight JavaScript and CSS that only runs on the front-end when needed.
+LinkMaker lets editors create Wikipedia links without leaving the editor. Link any text to `linkmaker` (no protocol) and the plugin automatically points the front-end link to the matching article on Wikipedia. It ships with lightweight JavaScript and CSS that only runs on the front-end when needed.
 
 * Gutenberg-friendly workflow
 * Zero configuration
@@ -20,7 +20,7 @@ WikiSearch lets editors create Wikipedia links without leaving the editor. Link 
 
 == Installation ==
 
-1. Upload the `wikisearch` folder to `/wp-content/plugins/`, or install the plugin via the WordPress admin by uploading the ZIP file.
+1. Upload the `linkmaker` folder to `/wp-content/plugins/`, or install the plugin via the WordPress admin by uploading the ZIP file.
 2. Activate the plugin through the "Plugins" screen in WordPress.
 
 == Frequently Asked Questions ==
@@ -33,7 +33,7 @@ Not yet. The plugin currently matches the Wikipedia article based on the visible
 
 == Screenshots ==
 
-1. Linking text to `wikisearch` in Gutenberg automatically produces Wikipedia links on the front end.
+1. Linking text to `linkmaker` in Gutenberg automatically produces Wikipedia links on the front end.
 
 == Changelog ==
 

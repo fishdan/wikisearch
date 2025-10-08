@@ -23,41 +23,41 @@ jobs:
       - name: Derive tag + zip name
         run: |
           echo "TAG=${GITHUB_REF_NAME}" >> $GITHUB_ENV
-          echo "ZIP_NAME=wikisearch-${GITHUB_REF_NAME}.zip" >> $GITHUB_ENV
+          echo "ZIP_NAME=linkmaker-${GITHUB_REF_NAME}.zip" >> $GITHUB_ENV
 
       # Optional: sanity check the plugin header exists
       - name: Verify plugin header
         run: |
-          test -f wikisearch.php
-          grep -q "Plugin Name:.*WikiSearch" wikisearch.php
+          test -f linkmaker.php
+          grep -q "Plugin Name:.*LinkMaker" linkmaker.php
 
       - name: Ensure version matches tag
         run: |
-          FILE_VERSION=$(grep -E "^\s*Version:\s*" wikisearch.php | head -1 | sed -E 's/^.*Version:\s*([0-9A-Za-z\.-]+).*/\1/')
+          FILE_VERSION=$(grep -E "^\s*Version:\s*" linkmaker.php | head -1 | sed -E 's/^.*Version:\s*([0-9A-Za-z\.-]+).*/\1/')
           if [ -z "$FILE_VERSION" ]; then
-            echo "::error ::Version header missing in wikisearch.php"
+            echo "::error ::Version header missing in linkmaker.php"
             exit 1
           fi
           EXPECTED="${TAG#v}"
           if [ "$FILE_VERSION" != "$EXPECTED" ]; then
-            echo "::error ::Version in wikisearch.php ($FILE_VERSION) does not match tag ($TAG)"
+            echo "::error ::Version in linkmaker.php ($FILE_VERSION) does not match tag ($TAG)"
             exit 1
           fi
 
       # Build a ZIP with FORWARD SLASHES using git archive.
-      # This packages the WHOLE repo with a top-level 'wikisearch/' folder.
-      # Ensure your plugin files live at repo root alongside wikisearch.php.
+      # This packages the WHOLE repo with a top-level 'linkmaker/' folder.
+      # Ensure your plugin files live at repo root alongside linkmaker.php.
       - name: Build plugin ZIP (POSIX paths)
         run: |
-          git archive --format=zip --output "$ZIP_NAME" --prefix=wikisearch/ "$GITHUB_SHA"
+          git archive --format=zip --output "$ZIP_NAME" --prefix=linkmaker/ "$GITHUB_SHA"
 
       - name: Copy stable zip alias
-        run: cp "$ZIP_NAME" wikisearch.zip
+        run: cp "$ZIP_NAME" linkmaker.zip
 
       # If your plugin lives in a subfolder of a monorepo, use this instead:
       # - name: Build plugin ZIP from subfolder
       #   run: |
-      #     git archive --format=zip --output "$ZIP_NAME" --prefix=wikisearch/ "$GITHUB_SHA":"plugins/wikisearch"
+      #     git archive --format=zip --output "$ZIP_NAME" --prefix=linkmaker/ "$GITHUB_SHA":"plugins/linkmaker"
 
       # Publish the Release and upload the zip
       - name: Publish GitHub Release
@@ -66,5 +66,5 @@ jobs:
           tag_name: ${{ env.TAG }}
           files: |
             ${{ env.ZIP_NAME }}
-            wikisearch.zip
+            linkmaker.zip
           generate_release_notes: true
